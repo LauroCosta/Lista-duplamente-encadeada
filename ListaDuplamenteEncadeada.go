@@ -3,14 +3,14 @@ package listaDuplamenteEncadeada
 import "fmt"
 
 type ListaEncadeada struct {
-	inicio  *no
-	fim     *no
-	tamanho int
+	Inicio  *no
+	Fim     *no
+	Tamanho int
 }
 type no struct {
-	valor    int
-	proximo  *no
-	anterior *no
+	Valor    int
+	Proximo  *no
+	Anterior *no
 }
 
 func NovoItem(valor int) *no {
@@ -23,81 +23,81 @@ func (l *ListaEncadeada) AddInicio(novoItem *no) {
 		return
 	}
 
-	if l.tamanho == 0 {
-		l.inicio = novoItem
-		l.fim = novoItem
-		l.tamanho++
+	if l.Tamanho == 0 {
+		l.Inicio = novoItem
+		l.Fim = novoItem
+		l.Tamanho++
 	} else {
-		novoItem.proximo = l.inicio
-		l.inicio.anterior = novoItem
-		l.inicio = novoItem
-		l.tamanho++
+		novoItem.Proximo = l.Inicio
+		l.Inicio.Anterior = novoItem
+		l.Inicio = novoItem
+		l.Tamanho++
 	}
 }
 func (l *ListaEncadeada) RemoverInicio() {
 
-	if l.tamanho == 0 {
+	if l.Tamanho == 0 {
 		return
-	} else if l.tamanho == 1 {
-		l.inicio = nil
-		l.fim = nil
-		l.tamanho--
+	} else if l.Tamanho == 1 {
+		l.Inicio = nil
+		l.Fim = nil
+		l.Tamanho--
 	} else {
-		l.inicio = l.inicio.proximo
-		l.inicio.anterior = nil
-		l.tamanho--
+		l.Inicio = l.Inicio.Proximo
+		l.Inicio.Anterior = nil
+		l.Tamanho--
 	}
 }
 
 func (l *ListaEncadeada) AddFim(novoItem *no) {
 
-	if l.tamanho == 0 {
-		l.fim = novoItem
-		l.inicio = novoItem
-		l.tamanho++
+	if l.Tamanho == 0 {
+		l.Fim = novoItem
+		l.Inicio = novoItem
+		l.Tamanho++
 	} else {
-		l.fim.proximo = novoItem
-		novoItem.anterior = l.fim
-		l.fim = novoItem
-		l.tamanho++
+		l.Fim.Proximo = novoItem
+		novoItem.Anterior = l.Fim
+		l.Fim = novoItem
+		l.Tamanho++
 	}
 
 }
 
 func (l *ListaEncadeada) RemoverFim() {
-	if l.tamanho == 0 {
+	if l.Tamanho == 0 {
 		return
-	} else if l.tamanho == 1 {
-		l.inicio = nil
-		l.fim = nil
-		l.tamanho--
+	} else if l.Tamanho == 1 {
+		l.Inicio = nil
+		l.Fim = nil
+		l.Tamanho--
 	} else {
-		l.fim = l.fim.anterior
-		l.fim.proximo = nil
-		l.tamanho--
+		l.Fim = l.Fim.Anterior
+		l.Fim.Proximo = nil
+		l.Tamanho--
 	}
 }
 
 func (l *ListaEncadeada) AddPosicao(novoItem *no, posicao int) {
 
-	if posicao >= 0 && posicao <= l.tamanho {
+	if posicao >= 0 && posicao <= l.Tamanho {
 
 		if posicao == 0 {
 			l.AddInicio(novoItem)
-		} else if posicao == l.tamanho {
+		} else if posicao == l.Tamanho {
 			l.AddFim(novoItem)
 		} else {
 			i := 0
-			aux := l.inicio
+			aux := l.Inicio
 			for i < posicao-1 {
-				aux = aux.proximo
+				aux = aux.Proximo
 				i++
 			}
-			novoItem.proximo = aux.proximo
-			novoItem.anterior = aux.anterior
-			aux.proximo = novoItem
-			novoItem.proximo.anterior = novoItem
-			l.tamanho++
+			novoItem.Proximo = aux.Proximo
+			novoItem.Anterior = aux.Anterior
+			aux.Proximo = novoItem
+			novoItem.Proximo.Anterior = novoItem
+			l.Tamanho++
 
 		}
 
@@ -109,22 +109,22 @@ func (l *ListaEncadeada) AddPosicao(novoItem *no, posicao int) {
 
 func (l *ListaEncadeada) RemoverPosicao(posicao int) {
 
-	if posicao >= 0 && posicao < l.tamanho {
+	if posicao >= 0 && posicao < l.Tamanho {
 
 		if posicao == 0 {
 			l.RemoverInicio()
-		} else if posicao == l.tamanho-1 {
+		} else if posicao == l.Tamanho-1 {
 			l.RemoverFim()
 		} else {
 			i := 0
-			aux := l.inicio
+			aux := l.Inicio
 			for i < posicao {
-				aux = aux.proximo
+				aux = aux.Proximo
 				i++
 			}
-			aux.anterior.proximo = aux.proximo
-			aux.proximo.anterior = aux.anterior
-			l.tamanho--
+			aux.Anterior.Proximo = aux.Proximo
+			aux.Proximo.Anterior = aux.Anterior
+			l.Tamanho--
 
 		}
 
@@ -135,13 +135,13 @@ func (l *ListaEncadeada) RemoverPosicao(posicao int) {
 
 func (l *ListaEncadeada) Listar() {
 
-	if l.tamanho == 0 {
+	if l.Tamanho == 0 {
 		fmt.Println("lista vazia")
 	} else {
-		proximo := l.inicio
+		proximo := l.Inicio
 		for proximo != nil {
-			fmt.Print(proximo.valor, " ")
-			proximo = proximo.proximo
+			fmt.Print(proximo.Valor, " ")
+			proximo = proximo.Proximo
 		}
 		fmt.Println()
 	}
