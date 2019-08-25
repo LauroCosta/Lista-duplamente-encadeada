@@ -2,7 +2,7 @@ package listaDuplamenteEncadeada
 
 import "fmt"
 
-type listaEncadeada struct {
+type ListaEncadeada struct {
 	inicio  *no
 	fim     *no
 	tamanho int
@@ -13,11 +13,11 @@ type no struct {
 	anterior *no
 }
 
-func novoItem(valor int) *no {
+func NovoItem(valor int) *no {
 	return &no{valor, nil, nil}
 }
 
-func (l *listaEncadeada) addInicio(novoItem *no) {
+func (l *ListaEncadeada) AddInicio(novoItem *no) {
 
 	if novoItem == nil {
 		return
@@ -34,7 +34,7 @@ func (l *listaEncadeada) addInicio(novoItem *no) {
 		l.tamanho++
 	}
 }
-func (l *listaEncadeada) removerInicio() {
+func (l *ListaEncadeada) RemoverInicio() {
 
 	if l.tamanho == 0 {
 		return
@@ -49,7 +49,7 @@ func (l *listaEncadeada) removerInicio() {
 	}
 }
 
-func (l *listaEncadeada) addFim(novoItem *no) {
+func (l *ListaEncadeada) AddFim(novoItem *no) {
 
 	if l.tamanho == 0 {
 		l.fim = novoItem
@@ -64,7 +64,7 @@ func (l *listaEncadeada) addFim(novoItem *no) {
 
 }
 
-func (l *listaEncadeada) removerFim() {
+func (l *ListaEncadeada) RemoverFim() {
 	if l.tamanho == 0 {
 		return
 	} else if l.tamanho == 1 {
@@ -78,14 +78,14 @@ func (l *listaEncadeada) removerFim() {
 	}
 }
 
-func (l *listaEncadeada) addPosicao(novoItem *no, posicao int) {
+func (l *ListaEncadeada) AddPosicao(novoItem *no, posicao int) {
 
 	if posicao >= 0 && posicao <= l.tamanho {
 
 		if posicao == 0 {
-			l.addInicio(novoItem)
+			l.AddInicio(novoItem)
 		} else if posicao == l.tamanho {
-			l.addFim(novoItem)
+			l.AddFim(novoItem)
 		} else {
 			i := 0
 			aux := l.inicio
@@ -107,14 +107,14 @@ func (l *listaEncadeada) addPosicao(novoItem *no, posicao int) {
 
 }
 
-func (l *listaEncadeada) removerPosicao(posicao int) {
+func (l *ListaEncadeada) RemoverPosicao(posicao int) {
 
 	if posicao >= 0 && posicao < l.tamanho {
 
 		if posicao == 0 {
-			l.removerInicio()
+			l.RemoverInicio()
 		} else if posicao == l.tamanho-1 {
-			l.removerFim()
+			l.RemoverFim()
 		} else {
 			i := 0
 			aux := l.inicio
@@ -133,7 +133,7 @@ func (l *listaEncadeada) removerPosicao(posicao int) {
 	}
 }
 
-func (l *listaEncadeada) listar() {
+func (l *ListaEncadeada) Listar() {
 
 	if l.tamanho == 0 {
 		fmt.Println("lista vazia")
