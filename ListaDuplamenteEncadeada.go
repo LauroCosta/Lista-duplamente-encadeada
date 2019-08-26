@@ -17,7 +17,9 @@ func NovoItem(valor int) *No {
 	return &No{valor, nil, nil}
 }
 
-func (l *ListaEncadeada) AddInicio(novoItem *No) {
+func (l *ListaEncadeada) AddInicio(valor int) {
+
+	novoItem := NovoItem(valor)
 
 	if novoItem == nil {
 		return
@@ -49,7 +51,9 @@ func (l *ListaEncadeada) RemoverInicio() {
 	}
 }
 
-func (l *ListaEncadeada) AddFim(novoItem *No) {
+func (l *ListaEncadeada) AddFim(valor int) {
+
+	novoItem := NovoItem(valor)
 
 	if l.Tamanho == 0 {
 		l.Fim = novoItem
@@ -78,14 +82,16 @@ func (l *ListaEncadeada) RemoverFim() {
 	}
 }
 
-func (l *ListaEncadeada) AddPosicao(novoItem *No, posicao int) {
+func (l *ListaEncadeada) AddPosicao(valor int, posicao int) {
+
+	novoItem := NovoItem(valor)
 
 	if posicao >= 0 && posicao <= l.Tamanho {
 
 		if posicao == 0 {
-			l.AddInicio(novoItem)
+			l.AddInicio(valor)
 		} else if posicao == l.Tamanho {
-			l.AddFim(novoItem)
+			l.AddFim(valor)
 		} else {
 			i := 0
 			aux := l.Inicio
