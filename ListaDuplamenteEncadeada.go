@@ -3,21 +3,21 @@ package listaDuplamenteEncadeada
 import "fmt"
 
 type ListaEncadeada struct {
-	Inicio  *no
-	Fim     *no
+	Inicio  *No
+	Fim     *No
 	Tamanho int
 }
-type no struct {
+type No struct {
 	Valor    int
-	Proximo  *no
-	Anterior *no
+	Proximo  *No
+	Anterior *No
 }
 
-func NovoItem(valor int) *no {
-	return &no{valor, nil, nil}
+func NovoItem(valor int) *No {
+	return &No{valor, nil, nil}
 }
 
-func (l *ListaEncadeada) AddInicio(novoItem *no) {
+func (l *ListaEncadeada) AddInicio(novoItem *No) {
 
 	if novoItem == nil {
 		return
@@ -49,7 +49,7 @@ func (l *ListaEncadeada) RemoverInicio() {
 	}
 }
 
-func (l *ListaEncadeada) AddFim(novoItem *no) {
+func (l *ListaEncadeada) AddFim(novoItem *No) {
 
 	if l.Tamanho == 0 {
 		l.Fim = novoItem
@@ -78,7 +78,7 @@ func (l *ListaEncadeada) RemoverFim() {
 	}
 }
 
-func (l *ListaEncadeada) AddPosicao(novoItem *no, posicao int) {
+func (l *ListaEncadeada) AddPosicao(novoItem *No, posicao int) {
 
 	if posicao >= 0 && posicao <= l.Tamanho {
 
