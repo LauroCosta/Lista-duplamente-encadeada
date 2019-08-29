@@ -1,4 +1,4 @@
-package listaDuplamenteEncadeada
+package lde
 
 import "fmt"
 
