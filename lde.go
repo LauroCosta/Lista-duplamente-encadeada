@@ -8,19 +8,19 @@ type ListaEncadeada struct {
 	Tamanho int
 }
 type No struct {
-	Valor    int
 	Chave    int
+	Valor    int
 	Proximo  *No
 	Anterior *No
 }
 
 func NovoItem(chave int, valor int) *No {
-	return &No{valor, chave, nil, nil}
+	return &No{chave, valor, nil, nil}
 }
 
-func (l *ListaEncadeada) AddInicio(valor int, chave int) {
+func (l *ListaEncadeada) AddInicio(chave int, valor int) {
 
-	novoItem := NovoItem(valor, chave)
+	novoItem := NovoItem(chave, valor)
 
 	if novoItem == nil {
 		return
@@ -52,9 +52,9 @@ func (l *ListaEncadeada) RemoverInicio() {
 	}
 }
 
-func (l *ListaEncadeada) AddFim(valor int, chave int) {
+func (l *ListaEncadeada) AddFim(chave int, valor int) {
 
-	novoItem := NovoItem(valor, chave)
+	novoItem := NovoItem(chave, valor)
 
 	if l.Tamanho == 0 {
 		l.Fim = novoItem
@@ -83,16 +83,16 @@ func (l *ListaEncadeada) RemoverFim() {
 	}
 }
 
-func (l *ListaEncadeada) AddPosicao(valor int, chave int, posicao int) {
+func (l *ListaEncadeada) AddPosicao(chave int, valor int, posicao int) {
 
-	novoItem := NovoItem(valor, chave)
+	novoItem := NovoItem(chave, valor)
 
 	if posicao >= 0 && posicao <= l.Tamanho {
 
 		if posicao == 0 {
-			l.AddInicio(valor, chave)
+			l.AddInicio(chave, valor)
 		} else if posicao == l.Tamanho {
-			l.AddFim(valor, chave)
+			l.AddFim(chave, valor)
 		} else {
 			i := 0
 			aux := l.Inicio
@@ -141,29 +141,31 @@ func (l *ListaEncadeada) RemoverPosicao(posicao int) {
 }
 
 func (l *ListaEncadeada) Buscar(chave int) int {
+	if l.Tamanho == 0 {
+		return -1
+	}
+	if l.Inicio.Chave == chave {
+		return l.Inicio.Valor
+	}
 
-	if l.Tamanho != 0 {
-		if l.Inicio.Chave == chave {
-			return l.Inicio.Valor
-		} else if l.Fim.Chave == chave {
-			return l.Fim.Valor
+	if l.Fim.Chave == chave {
+		return l.Fim.Valor
+	}
+
+	i := 0
+	aux := l.Inicio.Proximo
+	for i < l.Tamanho-1 {
+		fmt.Println(aux.Chave, "  ", chave)
+		if aux.Chave == chave {
+			fmt.Print("entrou aqui")
+			return aux.Valor
 		} else {
-			i := 0
-			aux := l.Inicio.Proximo
-			for i < l.Tamanho-1 {
-				fmt.Println(aux.Chave, "  ", chave)
-				if aux.Chave == chave {
-					fmt.Print("entrou aqui")
-					return aux.Valor
-				} else {
-					aux = aux.Proximo
-				}
-				i++
-			}
-			return -1
+			aux = aux.Proximo
 		}
+		i++
 	}
 	return -1
+
 }
 
 func (l *ListaEncadeada) Remover(chave int) {
